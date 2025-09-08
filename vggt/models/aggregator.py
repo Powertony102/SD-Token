@@ -160,8 +160,10 @@ class Aggregator(nn.Module):
 
         if "conv" in patch_embed:
             self.patch_embed = PatchEmbed(img_size=img_size, patch_size=patch_size, in_chans=3, embed_dim=embed_dim)
-        elif "sd" in patch_embed:
-            self.patch_embed = SDPatchEmbed(img_size=img_size, patch_size=patch_size, embed_dim=embed_dim)
+        elif "sd_diffusers" in patch_embed:
+            # 使用Hugging Face Diffusers的SD Token
+            from vggt.layers.sd_token_diffusers import SDTokenDiffusers
+            self.patch_embed = SDTokenDiffusers(img_size=img_size, patch_size=patch_size, embed_dim=embed_dim)
         else:
             vit_models = {
                 "dinov2_vitl14_reg": vit_large,
