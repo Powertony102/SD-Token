@@ -15,6 +15,7 @@ from vggt.layers import PatchEmbed
 from vggt.layers.block import Block
 from vggt.layers.rope import RotaryPositionEmbedding2D, PositionGetter
 from vggt.layers.vision_transformer import vit_small, vit_base, vit_large, vit_giant2
+from vggt.layers.sd_token import SDPatchEmbed
 
 logger = logging.getLogger(__name__)
 
@@ -159,6 +160,8 @@ class Aggregator(nn.Module):
 
         if "conv" in patch_embed:
             self.patch_embed = PatchEmbed(img_size=img_size, patch_size=patch_size, in_chans=3, embed_dim=embed_dim)
+        elif "sd" in patch_embed:
+            self.patch_embed = SDPatchEmbed(img_size=img_size, patch_size=patch_size, embed_dim=embed_dim)
         else:
             vit_models = {
                 "dinov2_vitl14_reg": vit_large,
