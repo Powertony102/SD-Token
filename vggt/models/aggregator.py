@@ -15,7 +15,8 @@ from vggt.layers import PatchEmbed
 from vggt.layers.block import Block
 from vggt.layers.rope import RotaryPositionEmbedding2D, PositionGetter
 from vggt.layers.vision_transformer import vit_small, vit_base, vit_large, vit_giant2
-from vggt.layers.sd_token import SDPatchEmbed
+# from vggt.layers.sd_token import SDPatchEmbed
+
 
 logger = logging.getLogger(__name__)
 
